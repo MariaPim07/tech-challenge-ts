@@ -1,14 +1,25 @@
-import { DataSource } from "typeorm";
+import { DataSource, DataSourceOptions } from 'typeorm';
+import { ClientEntity } from './entities/client.entity';
 
-const dataSource: DataSource = new DataSource({
-    type: "postgres",
-    host: "localhost",
+const config = {
+    type: 'postgres',
+    host: 'postgres',
     port: 5432,
-    username: "postgres",
-    password: "postgres",
-    database: "tech-challenge",
-    entities: ["src/adapter/driven/db/entities/**/*.ts"],
-    migrations: ["src/adapter/driven/db/migrations/**/*.ts"],
-})
+    database: 'tech-challenge',
+    username: 'postgres',
+    password: 'postgres',
+    entities: [ClientEntity],
+    migrations: ['dist/adapter/driven/db/migrations/*.js'],
+    migrationsTableName: 'typeorm_migrations',
+    logging: false,
+    synchronize: false,
+    migrationsRun: true,
+    extra: {
+    charset: 'utf8',
+    },
+} as DataSourceOptions;
 
-export default dataSource;
+const datasource = new DataSource(config);
+datasource.initialize();
+
+export default datasource;

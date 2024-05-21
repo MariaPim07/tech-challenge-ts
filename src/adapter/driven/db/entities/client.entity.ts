@@ -1,16 +1,16 @@
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
-@Entity()
+@Entity("client")
 export class ClientEntity {
-    @PrimaryGeneratedColumn()
+    @PrimaryGeneratedColumn("increment")
     id!: number;
     
-    @Column()
+    @Column({nullable: false})
     name!: string;
 
-    @Column()
+    @Column({nullable: false})
     email!: string;
 
-    @Column()
-    cpf: string | undefined;
+    // @Column()
+    // cpf: string | undefined;
 }
