@@ -1,0 +1,6 @@
+export enum CategoryEnum {
+    'CATEGORY_HAMBURGER',
+    'CATEGORY_ACCOMPANIMENT',
+    'CATEGORY_DRINK',
+    'CATEGORY_DESSERT'
+}
