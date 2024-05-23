@@ -1,5 +1,6 @@
+import ExceptionHandler from "../../../core/ExceptionHandler";
 import { ProductService } from "../../../core/application/services/product.service";
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 
 export class ProductController {
     constructor(private readonly productService: ProductService) {}
@@ -7,21 +8,20 @@ export class ProductController {
     async createProduct(req: Request, res: Response) {
         const product = req.body;
         try {
-            await this.productService.createProduct(product);
-            return res.status(200).json("Produto cadastrado com sucesso.");
+            return res.status(200)
+                .json(await this.productService.createProduct(product));
         } catch (err) {
-            console.log(err)
-            return res.status(500).json("Ocorreu um erro ao cadastrar o produto.");
+            ExceptionHandler(err, res);
         }
     }
 
     async updateProduct(req: Request, res: Response) {
         const product = req.body;
         try {
-            await this.productService.updateProduct(product);
-            return res.status(200).json("Produto atualizado com sucesso.");
-        } catch {
-            return res.status(500).json("Ocorreu um erro ao atualizar o produto.");
+            return res.status(200)
+                .json(await this.productService.updateProduct(product));
+        } catch (err) {
+            ExceptionHandler(err, res);
         }
     }
 
@@ -29,19 +29,19 @@ export class ProductController {
         const id = Number(req.params.id);
         try {
             await this.productService.deleteProduct(id);
-            return res.status(200).json("Produto removido com sucesso.");
-        } catch {
-            return res.status(500).json("Ocorreu um erro ao remover o produto.");
+            return res.status(200).json({message: "Produto removido com sucesso."});
+        } catch (err) {
+            ExceptionHandler(err, res);
         }
     }
 
     async findProductByCategory(req: Request, res: Response) {
         const {category} = req.body;
         try {
-            const productList = await this.productService.findByCategory(category);
-            return res.status(200).json(productList);
-        } catch {
-            return res.status(500).json("Ocorreu um erro ao buscar os produtos.");
+            return res.status(200)
+                .json(await this.productService.findByCategory(category));
+        } catch (err) {
+            ExceptionHandler(err, res);
         }
     }
 }

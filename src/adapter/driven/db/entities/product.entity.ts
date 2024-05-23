@@ -5,18 +5,15 @@ export class ProductEntity {
     @PrimaryGeneratedColumn("increment")
     id!: number;
 
-    @Column()
+    @Column({nullable: false})
     name!: string;
 
-    @Column()
+    @Column({nullable: false})
     category!: string;
 
-    @Column()
-    price!: string;
+    @Column({type:"float", nullable: false})
+    price!: number;
 
     @Column()
     description!: string;
-
-    @Column()
-    image!: string;
 }
