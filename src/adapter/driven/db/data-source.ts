@@ -4,12 +4,12 @@ import { ProductEntity } from './entities/product.entity';
 
 const config = {
     type: 'postgres',
-    host: 'postgres',
+    host: 'localhost',
     port: 5432,
     database: 'tech-challenge',
     username: 'postgres',
     password: 'postgres',
-    entities: [ClientEntity, ProductEntity],
+    entities: [ClientEntity, PaymentEntity, ProductEntity],
     migrations: ['dist/adapter/driven/db/migrations/*.js'],
     migrationsTableName: 'typeorm_migrations',
     logging: false,

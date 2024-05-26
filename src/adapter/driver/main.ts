@@ -1,3 +1,4 @@
+import "reflect-metadata"
 import express, { Express } from 'express';
 import clientRouter from './client/client.router';
 import productRouter from './product/product.router';

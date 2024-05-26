@@ -5,12 +5,12 @@ export class ClientEntity {
     @PrimaryGeneratedColumn("increment")
     id!: number;
     
-    @Column({nullable: false})
+    @Column({nullable: true})
     name!: string;
 
-    @Column({nullable: false})
+    @Column({nullable: true})
     email!: string;
 
-    // @Column()
-    // cpf: string | undefined;
+    @Column({nullable: true})
+    cpf!: string;
 }
