@@ -1,9 +1,9 @@
-import { PaymentEnum } from "../enums/payment.enum";
+import { PaymentMethodEnum } from "../enums/paymentMethod.enum";
 import { PaymentStatusEnum } from "../enums/paymentStatus.enum";
 
 export interface Payment {
     order: string;
-    totalValue: number;
-    payment: PaymentEnum;
+    totalPrice: number;
+    paymentMethod: PaymentMethodEnum;
     paymentStatus: PaymentStatusEnum;
 }

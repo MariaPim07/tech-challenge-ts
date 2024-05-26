@@ -25,4 +25,12 @@ export class ProductRepository implements IProductRepository {
     async findProductById(id: number): Promise<ProductEntity | null> {
         return await this.productRepository.findOneBy({id: id});
     }
+
+    async getPrice(ids: number[]): Promise<ProductEntity[]> {
+        return await this.productRepository.createQueryBuilder()
+        .select('product.price')
+        .from(ProductEntity, 'product')
+        .where('product.id IN (:...ids)', { ids })
+        .getMany();
+    }
 }

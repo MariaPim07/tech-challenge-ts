@@ -15,6 +15,10 @@ export class PaymentRepository implements IPaymentRepository {
     }
 
     async findByOrder(id: number): Promise<PaymentEntity | null> {
-        return await this.paymentRepository.findOneBy({order: id});
+        return await this.paymentRepository.findOneBy({ 
+            order: {
+                id: id
+            }
+        });
     }
 }

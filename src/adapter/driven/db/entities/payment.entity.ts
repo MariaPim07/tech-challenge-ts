@@ -1,21 +1,22 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
-import { PaymentStatusEnum } from "../../../../core/domain/enums/paymentStatus.enum";
-import { PaymentEnum } from "../../../../core/domain/enums/payment.enum";
+import { Order } from './../../../../core/domain/models/order';
+import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { OrderEntity } from './order.entity';
 
 @Entity("payment")
 export class PaymentEntity {
     @PrimaryGeneratedColumn("increment")
     id!: number;
 
-    @Column()
-    order!: number;
+    @OneToOne(() => OrderEntity, order => order.payment)
+    @JoinColumn()
+    order!: OrderEntity;
+
+    @Column({type: "float", nullable: false})
+    totalPrice!: number;
 
     @Column()
-    totalValue!: number;
+    paymentMethod!: string;
 
-    @Column()
-    payment!: PaymentEnum;
-
-    @Column()
-    paymentStatus!: PaymentStatusEnum
+    @Column({nullable: false})
+    paymentStatus!: string;
 }

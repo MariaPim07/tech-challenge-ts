@@ -1,5 +1,6 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
-import { OrderStatusEnum } from "../../../../core/domain/enums/orderStatus.enum";
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { PaymentEntity } from "./payment.entity";
+import { ProductEntity } from "./product.entity";
 
 @Entity("order")
 export class OrderEntity {
@@ -9,18 +10,25 @@ export class OrderEntity {
     @Column()
     client!: number;
 
-    @Column()
-    hamburger!: number;
-    
-    @Column()
-    accompaniment!: number;
-    
-    @Column()
-    drink!: number;
-    
-    @Column()
-    dessert!: number;
+    @ManyToOne(() => ProductEntity)
+    @JoinColumn()
+    hamburger!: ProductEntity;
 
-    @Column()
-    status!: OrderStatusEnum;
+    @ManyToOne(() => ProductEntity)
+    @JoinColumn()
+    accompaniment!: ProductEntity;
+
+    @ManyToOne(() => ProductEntity)
+    @JoinColumn()
+    drink!: ProductEntity;
+
+    @ManyToOne(() => ProductEntity)
+    @JoinColumn()
+    dessert!: ProductEntity;
+
+    @Column({nullable: false})
+    status!: string;
+
+    @OneToOne(() => PaymentEntity, payment => payment.order, { cascade: true })
+    payment!: PaymentEntity;
 }

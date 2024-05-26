@@ -1,6 +1,8 @@
+import { CategoryEnum } from "../enums/category.enum";
+
 export interface Product {
     name: string;
-    category: string;
+    category: CategoryEnum;
     price: number;
     description: string;
 }
