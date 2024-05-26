@@ -3,12 +3,12 @@ import { ClientEntity } from './entities/client.entity';
 
 const config = {
     type: 'postgres',
-    host: 'postgres',
+    host: 'localhost',
     port: 5432,
     database: 'tech-challenge',
     username: 'postgres',
     password: 'postgres',
-    entities: [ClientEntity],
+    entities: [ClientEntity, PaymentEntity],
     migrations: ['dist/adapter/driven/db/migrations/*.js'],
     migrationsTableName: 'typeorm_migrations',
     logging: false,
