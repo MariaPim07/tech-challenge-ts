@@ -1,13 +1,13 @@
 import { Repository } from "typeorm";
 import { IProductRepository } from "../../../core/application/ports/IProduct.repository";
 import { ProductEntity } from "../db/entities/product.entity";
-import datasource from "../db/data-source";
+import connection from "../db/connection";
 
 export class ProductRepository implements IProductRepository {
     private productRepository: Repository<ProductEntity>;
 
     constructor() {
-        this.productRepository = datasource.getRepository(ProductEntity);
+        this.productRepository = connection.getRepository(ProductEntity);
     }
 
     async saveOrUpdateProduct(product: ProductEntity): Promise<ProductEntity> {

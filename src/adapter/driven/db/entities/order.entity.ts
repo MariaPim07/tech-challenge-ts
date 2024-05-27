@@ -1,14 +1,16 @@
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import { PaymentEntity } from "./payment.entity";
 import { ProductEntity } from "./product.entity";
+import { ClientEntity } from "./client.entity";
 
 @Entity("order")
 export class OrderEntity {
     @PrimaryGeneratedColumn("increment")
     id!: number;
 
-    @Column()
-    client!: number;
+    @ManyToOne(() => ClientEntity)
+    @JoinColumn()
+    client!: ClientEntity;
 
     @ManyToOne(() => ProductEntity)
     @JoinColumn()

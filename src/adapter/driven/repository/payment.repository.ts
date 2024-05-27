@@ -1,13 +1,13 @@
 import { Repository } from "typeorm";
 import { PaymentEntity } from "../db/entities/payment.entity";
-import datasource from "../db/data-source";
 import { IPaymentRepository } from "../../../core/application/ports/IPayment.repository";
+import connection from "../db/connection";
 
 export class PaymentRepository implements IPaymentRepository {
     private paymentRepository: Repository<PaymentEntity>;
 
     constructor() {
-        this.paymentRepository = datasource.getRepository(PaymentEntity);
+        this.paymentRepository = connection.getRepository(PaymentEntity);
     }
 
     async saveOrUpdatePayment(payment: PaymentEntity): Promise<PaymentEntity> {

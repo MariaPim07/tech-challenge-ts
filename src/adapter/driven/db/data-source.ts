@@ -2,6 +2,7 @@ import { DataSource, DataSourceOptions } from 'typeorm';
 import { ClientEntity } from './entities/client.entity';
 import { ProductEntity } from './entities/product.entity';
 import { OrderEntity } from './entities/order.entity';
+import { PaymentEntity } from './entities/payment.entity';
 
 const config = {
     type: 'postgres',
@@ -11,7 +12,7 @@ const config = {
     username: 'postgres',
     password: 'postgres',
     entities: [ClientEntity, PaymentEntity, ProductEntity, OrderEntity],
-    migrations: ['dist/adapter/driven/db/migrations/*.js'],
+    migrations: ['src/adapter/driven/db/migrations/*.ts'],
     migrationsTableName: 'typeorm_migrations',
     logging: false,
     synchronize: false,

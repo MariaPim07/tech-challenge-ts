@@ -1,8 +1,7 @@
 import { Payment } from "./payment";
-import { Product } from "./product";
 
 export interface Order {
-    client: number;
+    client: {id: number};
     hamburger: {id: number};
     accompaniment: {id: number};
     drink: {id: number};
