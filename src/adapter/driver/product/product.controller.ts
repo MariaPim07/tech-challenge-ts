@@ -1,6 +1,6 @@
 import ExceptionHandler from "../../../core/ExceptionHandler";
 import { ProductService } from "../../../core/application/services/product.service";
-import { NextFunction, Request, Response } from "express";
+import { Request, Response } from "express";
 
 export class ProductController {
     constructor(private readonly productService: ProductService) {}

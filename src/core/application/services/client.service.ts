@@ -1,6 +1,6 @@
 import { ClientEntity } from '../../../adapter/driven/db/entities/client.entity';
+import { Client } from '../../domain/models/client';
 import { HttpException } from '../../HttpException';
-import { Client } from '../../domain/client';
 import { IClientRepository } from '../ports/IClient.repository';
 
 export class ClientService {

@@ -1,4 +1,4 @@
-import { Product } from './../../domain/product';
+import { Product } from '../../domain/models/product';
 import { ProductEntity } from '../../../adapter/driven/db/entities/product.entity';
 import { HttpException } from '../../HttpException';
 import { IProductRepository } from './../ports/IProduct.repository';
@@ -8,7 +8,7 @@ export class ProductService {
 
     async createProduct(product: Product) {
         this.requiredValidation(product);
-        
+
         const productEntity = new ProductEntity;
 
         Object.assign(productEntity, product);
