@@ -17,8 +17,6 @@ export class ProductService {
     }
 
     async updateProduct(product: Product) {
-        this.requiredValidation(product);
-
         const productEntity = new ProductEntity;
 
         Object.assign(productEntity, product);

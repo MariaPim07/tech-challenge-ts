@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { OrderService } from './../../../core/application/services/order.service';
+import { OrderService } from '../../../core/application/services/order.service';
 import ExceptionHandler from '../../../core/ExceptionHandler';
 
 export class OrderController {
