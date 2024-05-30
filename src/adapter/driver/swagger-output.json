@@ -1,0 +1,407 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "REST API",
+    "description": ""
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/client/": {
+      "post": {
+        "tags": [
+          "Cliente"
+        ],
+        "description": "salva informações do cliente (validação de CPF).",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "Nome Cliente"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "client@email.com"
+                },
+                "cpf": {
+                  "type": "string",
+                  "example": ""
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Cliente cadastrado com sucesso."
+          },
+          "400": {
+            "description": "Cliente não identificado."
+          },
+          "500": {
+            "description": "Erro interno do servidor."
+          },
+          "4XX": {
+            "description": "CPF inválido."
+          }
+        }
+      }
+    },
+    "/product/": {
+      "post": {
+        "tags": [
+          "Produto"
+        ],
+        "description": "salva Informações de cadastro do produto.",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "Nome Produto"
+                },
+                "category": {
+                  "type": "string",
+                  "enum": [
+                    "CATEGORY_HAMBURGER",
+                    "CATEGORY_ACCOMPANIMENT",
+                    "CATEGORY_DRINK",
+                    "CATEGORY_DESSERT"
+                  ]
+                },
+                "price": {
+                  "type": "number",
+                  "example": 6.5
+                },
+                "description": {
+                  "type": "string",
+                  "example": "Descrição produto."
+                }
+              },
+              "required": [
+                "name",
+                "category",
+                "price"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retorna dados de cadastro do produto."
+          },
+          "400": {
+            "description": "Campos obrigatórios não informados."
+          },
+          "500": {
+            "description": "Erro interno do servidor."
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Produto"
+        ],
+        "description": "salva Informações de edição do produto.",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "number",
+                  "example": 1
+                },
+                "name": {
+                  "type": "string",
+                  "example": "Nome Produto"
+                },
+                "category": {
+                  "type": "string",
+                  "enum": [
+                    "CATEGORY_HAMBURGER",
+                    "CATEGORY_ACCOMPANIMENT",
+                    "CATEGORY_DRINK",
+                    "CATEGORY_DESSERT"
+                  ]
+                },
+                "price": {
+                  "type": "number",
+                  "example": 6.5
+                },
+                "description": {
+                  "type": "string",
+                  "example": "Descrição produto."
+                }
+              },
+              "required": [
+                "id"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retorna dados de edição do produto."
+          },
+          "400": {
+            "description": "Id do produto não informado."
+          },
+          "500": {
+            "description": "Erro interno do servidor."
+          }
+        }
+      }
+    },
+    "/product/{id}": {
+      "delete": {
+        "tags": [
+          "Produto"
+        ],
+        "description": "deleta produto baseado no ID fornecido.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Produto deletado com sucesso."
+          },
+          "404": {
+            "description": "Produto não encontrado."
+          },
+          "500": {
+            "description": "Erro interno do servidor."
+          }
+        }
+      }
+    },
+    "/product/category": {
+      "post": {
+        "tags": [
+          "Produto"
+        ],
+        "description": "Lista informações do produto por categoria.",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "category": {
+                  "type": "string",
+                  "enum": [
+                    "CATEGORY_HAMBURGER",
+                    "CATEGORY_ACCOMPANIMENT",
+                    "CATEGORY_DRINK",
+                    "CATEGORY_DESSERT"
+                  ]
+                }
+              },
+              "required": [
+                "category"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retorna lista de produtos."
+          },
+          "500": {
+            "description": "Erro interno do servidor."
+          }
+        }
+      }
+    },
+    "/order/": {
+      "post": {
+        "tags": [
+          "Pedido"
+        ],
+        "description": "salva informações de cadastro do pedido.",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/order"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Pedido cadastrado com sucesso."
+          },
+          "500": {
+            "description": "Erro interno do servidor."
+          }
+        }
+      }
+    },
+    "/order/{id}": {
+      "put": {
+        "tags": [
+          "Pedido"
+        ],
+        "description": "altera status do pedido.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "ORDER_READY",
+                    "ORDER_FINISHED"
+                  ]
+                }
+              },
+              "required": [
+                "status"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Status alterado com sucesso."
+          },
+          "404": {
+            "description": "Pedido não encontrado."
+          },
+          "500": {
+            "description": "Erro interno do servidor."
+          }
+        }
+      }
+    },
+    "/payment/{id}": {
+      "post": {
+        "tags": [
+          "Pagamento"
+        ],
+        "description": "Salva método de pagamento.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "paymentMethod": {
+                  "type": "string",
+                  "enum": [
+                    "PAYMENT_METHOD_MONEY",
+                    "PAYMENT_METHOD_QR_CODE"
+                  ]
+                }
+              },
+              "required": [
+                "paymentMethod"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Método de pagamento salvo com sucesso."
+          },
+          "404": {
+            "description": "Pagamento não encontrado."
+          },
+          "500": {
+            "description": "Erro interno do servidor."
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "order": {
+      "type": "object",
+      "properties": {
+        "client": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "number",
+              "example": 1
+            }
+          }
+        },
+        "hamburger": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "number",
+              "example": 1
+            }
+          }
+        },
+        "accompaniment": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "number",
+              "example": 2
+            }
+          }
+        },
+        "drink": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "number",
+              "example": 3
+            }
+          }
+        },
+        "dessert": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "number",
+              "example": 4
+            }
+          }
+        }
+      }
+    }
+  }
+}
