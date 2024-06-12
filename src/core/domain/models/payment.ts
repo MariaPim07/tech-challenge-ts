@@ -1,5 +1,5 @@
-import { PaymentMethodEnum } from "../enums/paymentMethod.enum";
-import { PaymentStatusEnum } from "../enums/paymentStatus.enum";
+import { PaymentMethodEnum } from "../../../domain/enums/paymentMethod.enum";
+import { PaymentStatusEnum } from "../../../domain/enums/paymentStatus.enum";
 
 export interface Payment {
     order: string;

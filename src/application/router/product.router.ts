@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { ProductRepository } from "../../driven/repository/product.repository";
-import { ProductService } from "../../../core/application/services/product.service";
+import { ProductRepository } from "../../adapter/driven/repository/product.repository";
+import { ProductService } from "../../core/application/services/product.service";
 import { ProductController } from "../controller/product.controller";
 
 const productRouter = Router();

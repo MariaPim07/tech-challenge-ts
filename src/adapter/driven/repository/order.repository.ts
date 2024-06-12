@@ -1,5 +1,5 @@
 import { IOrderRepository } from "../../../core/application/ports/IOrder.repository";
-import connection from "../db/connection";
+import connection from "../../../infrastructure/database/connection";
 import { OrderEntity } from "../db/entities/order.entity";
 import { Repository } from 'typeorm';
 

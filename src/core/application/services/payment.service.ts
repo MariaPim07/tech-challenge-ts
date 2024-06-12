@@ -1,9 +1,9 @@
-import { PaymentStatusEnum } from "../../domain/enums/paymentStatus.enum";
+import { PaymentStatusEnum } from "../../../domain/enums/paymentStatus.enum";
 import { Payment } from "../../domain/models/payment";
 import { IPaymentRepository } from "../ports/IPayment.repository";
 import { IOrderRepository } from '../ports/IOrder.repository';
-import { OrderStatusEnum } from "../../domain/enums/orderStatus.enum";
-import { HttpException } from "../../HttpException";
+import { OrderStatusEnum } from "../../../domain/enums/orderStatus.enum";
+import { HttpException } from "../../../domain/HttpException";
 
 export class PaymentService {
     constructor(

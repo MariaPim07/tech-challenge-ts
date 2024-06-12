@@ -1,7 +1,7 @@
 import "reflect-metadata"
 import express, { Express } from 'express';
 import clientRouter from './router/client.router';
-import productRouter from './router/product.router';
+import productRouter from '../../application/router/product.router';
 import orderRouter from './router/order.router';
 import swaggerUi from 'swagger-ui-express';
 import fs from 'fs';

@@ -1,7 +1,7 @@
 import { Repository } from "typeorm";
 import { PaymentEntity } from "../db/entities/payment.entity";
 import { IPaymentRepository } from "../../../core/application/ports/IPayment.repository";
-import connection from "../db/connection";
+import connection from "../../../infrastructure/database/connection";
 
 export class PaymentRepository implements IPaymentRepository {
     private paymentRepository: Repository<PaymentEntity>;

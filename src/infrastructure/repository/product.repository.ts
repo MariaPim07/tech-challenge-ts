@@ -1,7 +1,7 @@
 import { Repository } from "typeorm";
-import { IProductRepository } from "../../../core/application/ports/IProduct.repository";
-import { ProductEntity } from "../db/entities/product.entity";
-import connection from "../db/connection";
+import { IProductRepository } from "../../domain/repository/IProduct.repository";
+import { ProductEntity } from "../entities/product.entity";
+import connection from "../database/connection";
 
 export class ProductRepository implements IProductRepository {
     private productRepository: Repository<ProductEntity>;

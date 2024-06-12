@@ -1,5 +1,5 @@
 import { Response } from "express";
-import { HttpException } from "./HttpException";
+import { HttpException } from "../domain/HttpException";
 
 const ExceptionHandler = (err: any, res: Response) => {
     if (err instanceof HttpException) {
