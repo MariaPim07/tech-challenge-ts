@@ -1,11 +1,11 @@
 import "reflect-metadata"
+import orderRouter from "./adapter/driver/router/order.router";
+import paymentRouter from "./adapter/driver/router/payment.router";
+import clientRouter from "./application/router/client.router";
+import productRouter from "./application/router/product.router";
 import express, { Express } from 'express';
-import clientRouter from './router/client.router';
-import productRouter from '../../application/router/product.router';
-import orderRouter from './router/order.router';
 import swaggerUi from 'swagger-ui-express';
 import fs from 'fs';
-import paymentRouter from "./router/payment.router";
 
 const swaggerJson = JSON.parse(fs.readFileSync('src/adapter/driver/swagger-output.json', 'utf-8'))
 

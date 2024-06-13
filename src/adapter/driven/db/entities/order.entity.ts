@@ -1,7 +1,7 @@
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import { PaymentEntity } from "./payment.entity";
 import { ProductEntity } from "../../../../infrastructure/entities/product.entity";
-import { ClientEntity } from "./client.entity";
+import { ClientEntity } from "../../../../infrastructure/entities/client.entity";
 
 @Entity("order")
 export class OrderEntity {

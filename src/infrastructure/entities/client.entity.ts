@@ -1,7 +1,8 @@
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Client } from "../../domain/entities/client";
 
 @Entity("client")
-export class ClientEntity {
+export class ClientEntity implements Client {
     @PrimaryGeneratedColumn("increment")
     id!: number;
     

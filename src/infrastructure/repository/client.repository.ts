@@ -1,7 +1,7 @@
 import { Repository } from "typeorm";
-import { IClientRepository } from "../../../core/application/ports/IClient.repository";
-import { ClientEntity } from "../db/entities/client.entity";
-import connection from "../../../infrastructure/database/connection";
+import { ClientEntity } from "../entities/client.entity";
+import connection from "../database/connection";
+import { IClientRepository } from "../../domain/repository/IClient.repository";
 
 export class ClientRepository implements IClientRepository {
     private clientRepository: Repository<ClientEntity>;

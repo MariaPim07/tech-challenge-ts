@@ -1,13 +1,15 @@
 import { Router } from "express";
-import { ClientService } from "../../../core/application/services/client.service";
-import { ClientRepository } from "../../driven/repository/client.repository";
+import { ClientRepository } from "../../infrastructure/repository/client.repository";
 import { ClientController } from "../controller/client.controller";
+import { CreateClientUseCase } from "../../domain/usecase/client/createClient.usecase";
 
 const clientRouter = Router();
 
 const clientRepository = new ClientRepository;
-const clientService = new ClientService(clientRepository);
-const clientController = new ClientController(clientService);
+
+const createClientUseCase = new CreateClientUseCase(clientRepository);
+
+const clientController = new ClientController(createClientUseCase);
 
 clientRouter.post("/", (req, res) => {
     // #swagger.tags = ['Cliente']
