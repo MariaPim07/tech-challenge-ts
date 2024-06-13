@@ -3,12 +3,12 @@ import { Product } from '../../entities/product';
 import { HttpException } from '../../HttpException';
 import { CategoryEnum } from '../../enums/category.enum';
 
-export class findProductByCategoryUseCase {
+export class FindProductByCategoryUseCase {
     constructor(private readonly productRepository: IProductRepository) {}
 
     async execute(category: string): Promise<Product[]> {
         this.categoryValidation(category);
-        
+
         return await this.productRepository.findProductByCategory(category);
     }
 

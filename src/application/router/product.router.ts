@@ -1,13 +1,26 @@
 import { Router } from "express";
-import { ProductRepository } from "../../adapter/driven/repository/product.repository";
-import { ProductService } from "../../core/application/services/product.service";
 import { ProductController } from "../controller/product.controller";
+import { ProductRepository } from "../../infrastructure/repository/product.repository";
+import { CreateProductUseCase } from "../../domain/usecase/product/createProduct.usecase";
+import { UpdateProductUseCase } from "../../domain/usecase/product/updateProduct.usecase";
+import { DeleteProductUseCase } from "../../domain/usecase/product/deleteProduct.usecase";
+import { FindProductByCategoryUseCase } from "../../domain/usecase/product/findProductByCategory.usecase";
 
 const productRouter = Router();
 
 const productRepository = new ProductRepository;
-const productService = new ProductService(productRepository);
-const productController = new ProductController(productService);
+
+const createProductUseCase = new CreateProductUseCase(productRepository);
+const updateProductUseCase = new UpdateProductUseCase(productRepository);
+const deleteProductUseCase = new DeleteProductUseCase(productRepository);
+const findProductByCategory = new FindProductByCategoryUseCase(productRepository);
+
+const productController = new ProductController(
+    createProductUseCase, 
+    updateProductUseCase, 
+    deleteProductUseCase, 
+    findProductByCategory
+);
 
 productRouter.post("/", (req, res) => {
     // #swagger.tags = ['Produto']

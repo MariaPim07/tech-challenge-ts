@@ -2,7 +2,7 @@ import { HttpException } from '../../HttpException';
 import { Product } from '../../entities/product';
 import { IProductRepository } from '../../repository/IProduct.repository';
 
-export class deleteProductUseCase {
+export class DeleteProductUseCase {
     constructor(private readonly productRepository: IProductRepository) {}
 
     async execute(idProduct: number): Promise<Product> {
