@@ -2,7 +2,7 @@ import { PaymentRepository } from '../../driven/repository/payment.repository';
 import { Router } from "express";
 import { PaymentService } from "../../../core/application/services/payment.service";
 import { PaymentController } from "../controller/payment.controller";
-import { OrderRepository } from '../../driven/repository/order.repository';
+import { OrderRepository } from '../../../infrastructure/repository/order.repository';
 
 const paymentRouter = Router();
 

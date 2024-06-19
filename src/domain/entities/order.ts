@@ -7,4 +7,5 @@ export interface Order {
     drink: {id: number};
     dessert: {id: number};
     payment: Payment;
+    status: string;
 }

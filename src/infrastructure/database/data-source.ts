@@ -1,8 +1,8 @@
 import { DataSource, DataSourceOptions } from 'typeorm';
 import { ClientEntity } from '../entities/client.entity';
 import { ProductEntity } from '../entities/product.entity';
-import { OrderEntity } from '../../adapter/driven/db/entities/order.entity';
 import { PaymentEntity } from '../../adapter/driven/db/entities/payment.entity';
+import { OrderEntity } from '../entities/order.entity';
 
 const config = {
     type: 'postgres',

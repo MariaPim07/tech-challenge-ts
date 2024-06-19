@@ -1,7 +1,7 @@
 import { PaymentStatusEnum } from "../../../domain/enums/paymentStatus.enum";
 import { Payment } from "../../domain/models/payment";
 import { IPaymentRepository } from "../ports/IPayment.repository";
-import { IOrderRepository } from '../ports/IOrder.repository';
+import { IOrderRepository } from '../../../domain/repository/IOrder.repository';
 import { OrderStatusEnum } from "../../../domain/enums/orderStatus.enum";
 import { HttpException } from "../../../domain/HttpException";
 

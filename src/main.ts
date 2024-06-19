@@ -1,5 +1,5 @@
 import "reflect-metadata"
-import orderRouter from "./adapter/driver/router/order.router";
+import orderRouter from "./application/router/order.router";
 import paymentRouter from "./adapter/driver/router/payment.router";
 import clientRouter from "./application/router/client.router";
 import productRouter from "./application/router/product.router";

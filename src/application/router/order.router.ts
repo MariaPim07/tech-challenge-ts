@@ -1,15 +1,19 @@
 import { Router } from "express";
-import { OrderRepository } from "../../driven/repository/order.repository";
-import { OrderService } from "../../../core/application/services/order.service";
+import { OrderRepository } from "../../infrastructure/repository/order.repository";
 import { OrderController } from "../controller/order.controller";
-import { ProductRepository } from "../../driven/repository/product.repository";
+import CreateOrderUseCase from "../../domain/usecase/order/createOrder.usecase";
+import { ProductRepository } from "../../infrastructure/repository/product.repository";
+import UpdateOrderUseCase from "../../domain/usecase/order/updateOrder.usecase";
 
 const orderRouter = Router();
 
 const orderRepository = new OrderRepository;
 const productRepository = new ProductRepository;
-const orderService = new OrderService(orderRepository, productRepository);
-const orderController = new OrderController(orderService);
+
+const createOrderUseCase = new CreateOrderUseCase(orderRepository, productRepository);
+const updateOrderUseCase = new UpdateOrderUseCase(orderRepository);
+
+const orderController = new OrderController(createOrderUseCase, updateOrderUseCase);
 
 orderRouter.post("/", (req, res) => {
     // #swagger.tags = ['Pedido']
@@ -22,7 +26,6 @@ orderRouter.post("/", (req, res) => {
     // #swagger.responses[500] = { description: 'Erro interno do servidor.' }
     return orderController.createOrder(req, res);
 });
-
 
 orderRouter.put("/:id", (req, res) => {
     // #swagger.tags = ['Pedido']

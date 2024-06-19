@@ -1,10 +1,11 @@
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import { PaymentEntity } from "./payment.entity";
-import { ProductEntity } from "../../../../infrastructure/entities/product.entity";
-import { ClientEntity } from "../../../../infrastructure/entities/client.entity";
+import { Order } from "../../domain/entities/order";
+import { ClientEntity } from "./client.entity";
+import { ProductEntity } from "./product.entity";
 
 @Entity("order")
-export class OrderEntity {
+export class OrderEntity implements Order {
     @PrimaryGeneratedColumn("increment")
     id!: number;
 
