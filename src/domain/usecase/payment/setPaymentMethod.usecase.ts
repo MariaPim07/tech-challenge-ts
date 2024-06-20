@@ -1,17 +1,17 @@
-import { PaymentStatusEnum } from "../../../domain/enums/paymentStatus.enum";
-import { Payment } from "../../domain/models/payment";
-import { IPaymentRepository } from "../ports/IPayment.repository";
-import { IOrderRepository } from '../../../domain/repository/IOrder.repository';
-import { OrderStatusEnum } from "../../../domain/enums/orderStatus.enum";
-import { HttpException } from "../../../domain/HttpException";
+import { HttpException } from "../../HttpException";
+import { Payment } from "../../entities/payment";
+import { OrderStatusEnum } from "../../enums/orderStatus.enum";
+import { PaymentStatusEnum } from "../../enums/paymentStatus.enum";
+import { IOrderRepository } from "../../repository/IOrder.repository";
+import { IPaymentRepository } from "../../repository/IPayment.repository";
 
-export class PaymentService {
+export default class SetPaymentMethodUseCase {
     constructor(
         private readonly paymentRepository: IPaymentRepository,
         private readonly orderRepository: IOrderRepository,
     ) {}
 
-    async setPaymentMethod(idOrder: number, payment: Payment) {
+    async execute (idOrder: number, payment: Payment) {
         const orderPayment = await this.paymentRepository.findByOrder(idOrder);
 
         if (!orderPayment) throw new HttpException(404, "Pagamento não encontrado.");

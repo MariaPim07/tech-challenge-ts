@@ -1,8 +1,8 @@
-import { Column, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
-import { PaymentEntity } from "./payment.entity";
+import { Column, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import { Order } from "../../domain/entities/order";
 import { ClientEntity } from "./client.entity";
 import { ProductEntity } from "./product.entity";
+import { PaymentEntity } from "./payment.entity";
 
 @Entity("order")
 export class OrderEntity implements Order {

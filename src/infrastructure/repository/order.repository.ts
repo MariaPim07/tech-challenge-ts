@@ -1,7 +1,7 @@
-import { IOrderRepository } from "../../core/application/ports/IOrder.repository";
+import { IOrderRepository } from "../../domain/repository/IOrder.repository";
 import connection from "../database/connection";
-import { OrderEntity } from "../db/entities/order.entity";
 import { Repository } from 'typeorm';
+import { OrderEntity } from "../entities/order.entity";
 
 export class OrderRepository implements IOrderRepository {
     private orderRepository: Repository<OrderEntity>;

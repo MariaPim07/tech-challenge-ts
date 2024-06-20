@@ -1,7 +1,7 @@
 import { DataSource, DataSourceOptions } from 'typeorm';
 import { ClientEntity } from '../entities/client.entity';
 import { ProductEntity } from '../entities/product.entity';
-import { PaymentEntity } from '../../adapter/driven/db/entities/payment.entity';
+import { PaymentEntity } from '../entities/payment.entity';
 import { OrderEntity } from '../entities/order.entity';
 
 const config = {

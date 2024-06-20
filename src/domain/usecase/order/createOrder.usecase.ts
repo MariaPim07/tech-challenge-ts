@@ -1,10 +1,10 @@
-import { Payment } from './../../../core/domain/models/payment';
 import { Order } from "../../entities/order";
 import { OrderStatusEnum } from "../../enums/orderStatus.enum";
 import { PaymentStatusEnum } from "../../enums/paymentStatus.enum";
 import { IOrderRepository } from "../../repository/IOrder.repository";
 import { IProductRepository } from "../../repository/IProduct.repository";
 import { PaymentMethodEnum } from '../../enums/paymentMethod.enum';
+import { Payment } from "../../entities/payment";
 
 export default class CreateOrderUseCase {
     constructor(

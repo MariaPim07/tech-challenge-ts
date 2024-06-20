@@ -1,9 +1,9 @@
-import { Order } from './../../../../core/domain/models/order';
 import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import { OrderEntity } from './order.entity';
+import { Payment } from "../../domain/entities/payment";
 
 @Entity("payment")
-export class PaymentEntity {
+export class PaymentEntity implements Payment {
     @PrimaryGeneratedColumn("increment")
     id!: number;
 

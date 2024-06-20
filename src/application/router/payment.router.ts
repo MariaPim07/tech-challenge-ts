@@ -1,15 +1,17 @@
-import { PaymentRepository } from '../../driven/repository/payment.repository';
 import { Router } from "express";
-import { PaymentService } from "../../../core/application/services/payment.service";
 import { PaymentController } from "../controller/payment.controller";
-import { OrderRepository } from '../../../infrastructure/repository/order.repository';
+import { OrderRepository } from '../../infrastructure/repository/order.repository';
+import SetPaymentMethodUseCase from "../../domain/usecase/payment/setPaymentMethod.usecase";
+import { PaymentRepository } from "../../infrastructure/repository/payment.repository";
 
 const paymentRouter = Router();
 
 const orderRepository = new OrderRepository()
 const paymentRepository = new PaymentRepository();
-const paymentService = new PaymentService(paymentRepository, orderRepository);
-const paymentController = new PaymentController(paymentService);
+
+const setPaymentMethodUseCase = new SetPaymentMethodUseCase(paymentRepository, orderRepository);
+
+const paymentController = new PaymentController(setPaymentMethodUseCase);
 
 paymentRouter.post("/:id", (req, res) => {
     // #swagger.tags = ['Pagamento']
