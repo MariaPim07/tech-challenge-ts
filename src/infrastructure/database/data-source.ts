@@ -12,7 +12,7 @@ const config = {
     username: 'postgres',
     password: 'postgres',
     entities: [ClientEntity, PaymentEntity, ProductEntity, OrderEntity],
-    migrations: ['src/adapter/driven/db/migrations/*.ts'],
+    migrations: ['dist/infrastructure/database/migrations/*.{ts,js}'],
     migrationsTableName: 'typeorm_migrations',
     logging: false,
     synchronize: false,

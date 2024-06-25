@@ -18,8 +18,8 @@
 
 1. No diretório do projeto, execute o comando `docker compose build`.
 2. Execute o comando `docker compose up`.
-3. Em seguida, execute o comando `npm run typeorm migration:generate ./src/adapter/driven/db/migrations/CreateTables -- -d ./src/adapter/driven/db/data-source.ts` para gerar as migrations do banco de dados.
-4. Execute o comando `npm run typeorm migration:run -- -d ./src/adapter/driven/db/data-source.ts` para executar a migration.
+3. Em seguida, execute o comando `npm run typeorm migration:generate ./src/infrastructure/database/migrations/CreateTables -- -d ./src/infrastructure/database/data-source.ts` para gerar as migrations do banco de dados.
+4. Execute o comando ` typeorm migration:run -- -d ./src/infrastructure/database/data-source.ts` para executar a migration.
 
 ## Documentação
 

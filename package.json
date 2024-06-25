@@ -6,9 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "npx tsc",
-    "start": "node dist/adapter/driver/main.js",
+    "start": "node dist/main.js",
     "typeorm": "ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
-    "swagger": "node dist/adapter/driver/swagger.js"
+    "swagger": "node src/swagger.js"
   },
   "keywords": [],
   "author": "",

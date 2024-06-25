@@ -17,4 +17,20 @@ export class OrderRepository implements IOrderRepository {
     async findOrderById(id: number): Promise<OrderEntity | null> {
         return await this.orderRepository.findOneBy({id: id});
     }
+
+    async getOrder(): Promise<OrderEntity[]> {
+        return await this.orderRepository.createQueryBuilder("order")
+        .innerJoinAndSelect("order.client", "client")
+        .leftJoinAndSelect("order.hamburger", "hamburger")
+        .leftJoinAndSelect("order.accompaniment", "accompaniment")
+        .leftJoinAndSelect("order.drink", "drink")
+        .leftJoinAndSelect("order.dessert", "dessert")
+        .innerJoinAndSelect("order.payment", "payment")
+        .where("order.status != 'ORDER_FINISHED'")
+        .orderBy(`Case when order.status like 'ORDER_READY' then 1 
+            when order.status like 'ORDER_PREPARATION' then 2
+            when order.status like 'ORDER_RECEIVED' then 3 end`, "ASC")
+        .addOrderBy("order.updatedAt", "DESC")
+        .getMany();
+    }
 }

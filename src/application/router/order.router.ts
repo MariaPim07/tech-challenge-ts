@@ -4,6 +4,7 @@ import { OrderController } from "../controller/order.controller";
 import CreateOrderUseCase from "../../domain/usecase/order/createOrder.usecase";
 import { ProductRepository } from "../../infrastructure/repository/product.repository";
 import UpdateOrderUseCase from "../../domain/usecase/order/updateOrder.usecase";
+import { GetOrderUseCase } from "../../domain/usecase/order/getOrder.usecase";
 
 const orderRouter = Router();
 
@@ -12,8 +13,13 @@ const productRepository = new ProductRepository;
 
 const createOrderUseCase = new CreateOrderUseCase(orderRepository, productRepository);
 const updateOrderUseCase = new UpdateOrderUseCase(orderRepository);
+const getOrderUseCase = new GetOrderUseCase(orderRepository);
 
-const orderController = new OrderController(createOrderUseCase, updateOrderUseCase);
+const orderController = new OrderController(
+    createOrderUseCase, 
+    updateOrderUseCase,
+    getOrderUseCase
+);
 
 orderRouter.post("/", (req, res) => {
     // #swagger.tags = ['Pedido']
@@ -43,6 +49,14 @@ orderRouter.put("/:id", (req, res) => {
     // #swagger.responses[404] = { description: 'Pedido não encontrado.' }
     // #swagger.responses[500] = { description: 'Erro interno do servidor.' }
     return orderController.updateOrderStatus(req, res);
+});
+
+orderRouter.get("/", (req, res) => {
+    // #swagger.tags = ['Pedido']
+    // #swagger.description = lista todos os pedidos (exceto finalizados).
+    // #swagger.responses[200] = { description: 'Lista pedidos.' }
+    // #swagger.responses[500] = { description: 'Erro interno do servidor.' }
+    return orderController.getOrder(req, res);
 });
 
 export default orderRouter;

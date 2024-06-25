@@ -7,7 +7,7 @@ import express, { Express } from 'express';
 import swaggerUi from 'swagger-ui-express';
 import fs from 'fs';
 
-const swaggerJson = JSON.parse(fs.readFileSync('src/adapter/driver/swagger-output.json', 'utf-8'))
+const swaggerJson = JSON.parse(fs.readFileSync('src/swagger-output.json', 'utf-8'))
 
 export const app: Express = express();
 

@@ -12,4 +12,4 @@ const doc = {
     }
 };
 
-swaggerAutogen()('src/adapter/driver/swagger-output.json', ['src/adapter/driver/main.ts'], doc);
+swaggerAutogen()('src/swagger-output.json', ['src/main.ts'], doc);

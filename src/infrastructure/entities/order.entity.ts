@@ -1,4 +1,4 @@
-import { Column, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { Order } from "../../domain/entities/order";
 import { ClientEntity } from "./client.entity";
 import { ProductEntity } from "./product.entity";
@@ -34,4 +34,10 @@ export class OrderEntity implements Order {
 
     @OneToOne(() => PaymentEntity, payment => payment.order, { cascade: true })
     payment!: PaymentEntity;
+
+    @CreateDateColumn() 
+    createdAt!: Date;
+    
+    @UpdateDateColumn() 
+    updatedAt!: Date;
 }
